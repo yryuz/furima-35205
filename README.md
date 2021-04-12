@@ -1,24 +1,77 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Column | Type | Options
+-|-|-
+nickname | string | NOT NULL
+email | string | NOT NULL, unique: true
+encrypted_password | string | NOT NULL
+first_name | string | NOT NULL
+family_name | string | NOT NULL
+first_name_kana | string | NOT NULL
+family_name_kana | string | NOT NULL
+birth_day | date | NOT NULL
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many :items, dependent: :destroy
+- has_many :purchases, dependent: :destroy
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+## destinationsテーブル
 
-* Database initialization
+Column | Type | Options
+-|-|-
+purchase | references | null: false, foreign_key: true
+post_code | string | NOT NULL
+prefecture_id | integer | NOT NULL
+city | string | NOT NULL
+house_number | string | NOT NULL
+building_name | string |
+phone_number | string | NOT NULL
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :purchases
 
-* Deployment instructions
+## itemsテーブル
 
-* ...
+Column | Type | Options
+-|-|-
+name | string | NOT NULL
+introduction | text | NOT NULL
+price | integer | NOT NULL
+user | references | null: false, foreign_key: true
+postage_payer_id | integer | NOT NULL
+prefecture_id| integer | NOT NULL
+preparation_day_id | integer | NOT NULL
+category_id | integer |  NOT NULL
+condition_id | integer | NOT NULL
+
+### Association
+
+- belongs_to :user
+- has_one :purchase
+
+
+
+## purchasesテーブル
+
+Column | Type | Options
+-|-|-
+user | references | null: false, foreign_key: true
+item | references | null: false, foreign_key: true
+
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
+- has_one :destination
+
+
+
+
+
+
+
