@@ -13,7 +13,6 @@ birth_day | date | NOT NULL
 
 ### Association
 
-- has_one :destination, dependent: :destroy
 - has_many :items, dependent: :destroy
 - has_many :purchases, dependent: :destroy
 
@@ -25,7 +24,7 @@ Column | Type | Options
 -|-|-
 purchase | references | null: false, foreign_key: true
 post_code | string | NOT NULL
-prefecture | integer | NOT NULL
+prefecture_id | integer | NOT NULL
 city | string | NOT NULL
 house_number | string | NOT NULL
 building_name | string |
@@ -33,7 +32,7 @@ phone_number | string | NOT NULL
 
 ### Association
 
-- has_one :purchases
+- belongs_to :purchases
 
 ## itemsテーブル
 
@@ -43,11 +42,11 @@ name | string | NOT NULL
 introduction | text | NOT NULL
 price | integer | NOT NULL
 user | references | null: false, foreign_key: true
-postage_payer | integer | NOT NULL
-prefecture_code | integer | NOT NULL
-preparation_day | integer | NOT NULL
+postage_payer_id | integer | NOT NULL
+prefecture_id| integer | NOT NULL
+preparation_day_id | integer | NOT NULL
 category_id | integer |  NOT NULL
-condition | integer | NOT NULL
+condition_id | integer | NOT NULL
 
 ### Association
 
@@ -62,13 +61,13 @@ Column | Type | Options
 -|-|-
 user | references | null: false, foreign_key: true
 item | references | null: false, foreign_key: true
-destination | references | null: false, foreign_key: true
+
 
 ### Association
 
 - belongs_to :item
 - belongs_to :user
-- belongs_to :destination
+- has_one :destination
 
 
 
