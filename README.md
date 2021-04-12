@@ -23,17 +23,17 @@ birth_day | date | NOT NULL
 
 Column | Type | Options
 -|-|-
-user | references | null: false, foreign_key: true
-post_code | integer | NOT NULL
+purchase | references | null: false, foreign_key: true
+post_code | string | NOT NULL
 prefecture | integer | NOT NULL
 city | string | NOT NULL
 house_number | string | NOT NULL
 building_name | string |
-phone_number | integer | NOT NULL
+phone_number | string | NOT NULL
 
 ### Association
 
-- belongs_to :user
+- has_one :purchases
 
 ## itemsテーブル
 
@@ -62,11 +62,13 @@ Column | Type | Options
 -|-|-
 user | references | null: false, foreign_key: true
 item | references | null: false, foreign_key: true
+destination | references | null: false, foreign_key: true
 
 ### Association
 
 - belongs_to :item
 - belongs_to :user
+- belongs_to :destination
 
 
 
