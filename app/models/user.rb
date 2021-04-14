@@ -12,11 +12,9 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates_format_of :first_name, with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
   validates :family_name_kana, presence: true
-  validates_format_of :family_name_kana, with: /\p{katakana}/ 
-  /\A[ァ-ヶー－]+\z/
+  validates_format_of :family_name_kana, with: /[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/
   validates :first_name_kana, presence: true
-  validates_format_of :first_name_kana, with: /\p{katakana}/ 
-  /\A[ァ-ヶー－]+\z/
+  validates_format_of :first_name_kana, with: /[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/
   validates :birth_day, presence: true
 
 end
