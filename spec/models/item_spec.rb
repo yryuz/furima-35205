@@ -13,7 +13,18 @@ RSpec.describe Item, type: :model do
      it "全ての項目の入力が存在すれば登録できること" do
       expect(@item).to be_valid
   end
+
+    it "価格が300円のとき出品できる" do
+      @item.price = 300
+      expect(@item).to be_valid
   end
+
+    it "価格が9999999円のとき出品できる" do
+      @item.price = 9999999
+      expect(@item).to be_valid
+  end
+  end
+
   end
 
     context '商品出品が出来ないとき' do
@@ -45,14 +56,16 @@ RSpec.describe Item, type: :model do
   it "価格が300円未満の場合出品できない" do
     @item.price = 100
     @item.valid?
-    expect(@item.errors.full_messages).to include("Price must be greater than 300")
+    expect(@item.errors.full_messages).to include("Price must be greater than 299")
   end
 
   it "価格が9999999円より高い場合出品できない" do
     @item.price = 1000000000000
     @item.valid?
-    expect(@item.errors.full_messages).to include("Price must be less than 9999999")
+    expect(@item.errors.full_messages).to include("Price must be less than 10000000")
   end
+
+  
 
   it "全角文字では登録できないこと" do
     @item.price = "５００"
