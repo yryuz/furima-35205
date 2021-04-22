@@ -24,5 +24,6 @@ class User < ApplicationRecord
   validates_format_of :first_name_kana, with: /[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/
   
   has_many :items, dependent: :destroy
+  has_many :orders, dependent: :destroy
   
 end

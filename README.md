@@ -14,7 +14,7 @@ birth_day | date | NOT NULL
 ### Association
 
 - has_many :items, dependent: :destroy
-- has_many :purchases, dependent: :destroy
+- has_many :orders, dependent: :destroy
 
 
 
@@ -22,7 +22,7 @@ birth_day | date | NOT NULL
 
 Column | Type | Options
 -|-|-
-purchase | references | null: false, foreign_key: true
+order | references | null: false, foreign_key: true
 post_code | string | NOT NULL
 prefecture_id | integer | NOT NULL
 city | string | NOT NULL
@@ -32,7 +32,7 @@ phone_number | string | NOT NULL
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :order
 
 ## itemsテーブル
 
@@ -51,11 +51,11 @@ condition_id | integer | NOT NULL
 ### Association
 
 - belongs_to :user
-- has_one :purchase
+- has_one :order
 
 
 
-## purchasesテーブル
+## ordersテーブル
 
 Column | Type | Options
 -|-|-
