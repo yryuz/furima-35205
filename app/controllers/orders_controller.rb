@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
   def create
     
     @order_destination = OrderDestination.new(order_params)
-    
     if @order_destination.valid?
       pay_item
       @order_destination.save
