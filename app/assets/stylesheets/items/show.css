@@ -205,3 +205,8 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+img[id="blob_img"] {
+  width: 100%;
+  height: 100%;
+} 
