@@ -15,6 +15,7 @@ birth_day | date | NOT NULL
 
 - has_many :items, dependent: :destroy
 - has_many :orders, dependent: :destroy
+- has_many :comments, dependent: :destroy
 
 
 
@@ -52,6 +53,7 @@ condition_id | integer | NOT NULL
 
 - belongs_to :user
 - has_one :order
+- has_many :comments
 
 
 
@@ -70,8 +72,16 @@ item | references | null: false, foreign_key: true
 - has_one :destination
 
 
+## commentsテーブル
+
+Column | Type | Options
+-|-|-
+user | references | null: false, foreign_key: true
+item | references | null: false, foreign_key: true
+comment | text | NOT NULL
 
 
-
-
+### Association
+- belongs_to  :user
+- belongs_to  :item
 
